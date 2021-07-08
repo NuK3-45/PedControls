@@ -113,3 +113,41 @@ RegisterCommand('markarea', function()
     SetBlipSprite(markedAreaBlip, 161)
     SetBlipNameToPlayerName(markedAreaBlip, playerID)
 end)
+
+RegisterCommand('teleportto', function(source, args)
+    local playerID = PlayerId()
+
+    if args[1] == "paletopd" then
+        StartPlayerTeleport(playerID, -442.56, 6017.2, 31.71, 135.2, 1, 0, 1)
+    elseif args[1] == "paletofd" then
+        StartPlayerTeleport(playerID, -381.12, 6119.76, 31.48, 226.21, 1, 0, 1)
+    elseif args[1] == "sandypd" then
+        StartPlayerTeleport(playerID, 1855.93, 3682.09, 34.27, 29.5, 1, 0, 1)
+    elseif args[1] == "sandyfd" then
+        StartPlayerTeleport(playerID, 1690.54, 3580.7, 35.62, 31.15, 1, 0, 1)
+    elseif args[1] == "prison" then
+        StartPlayerTeleport(playerID, 1847.53, 2585.87, 45.67, 88.82, 1, 0, 1)
+    elseif args[1] == "vinewoodpd" then
+        StartPlayerTeleport(playerID, 641.83, 0.59, 82.79, 68.82, 1, 0, 1)
+    elseif args[1] == "pillbox" then
+        StartPlayerTeleport(playerID, 298.15, -584.4, 43.26, 253.62, 1, 0, 1)
+    elseif args[1] == "missionrowpd" then
+        StartPlayerTeleport(playerID, 432.73, -982.01, 30.71, 271.79, 1, 0, 1)
+    elseif args[1] == "davispd" then
+        StartPlayerTeleport(playerID, 360.17, -1583.88, 29.29, 228.53, 1, 0, 1)
+    elseif args[1] == "vespuccipd" then
+        StartPlayerTeleport(playerID, -1111.48, -847.7, 19.32, 311.32, 1, 0, 1)
+    elseif args[1] == "delperropd" then
+        StartPlayerTeleport(playerID, -1631.3, -1014.53, 13.12, 138.49, 1, 0, 1)
+    else
+        exports.pNotify:SendNotification({text = "You did not specify a valid location.", type = "error", timeout = (5000), layout = "bottomCenter",})
+    end
+end)
+
+RegisterCommand('weaponstats', function()
+    local getPlayerPed = GetPlayerPed(-1)
+    local getPlayerWeapon = GetSelectedPedWeapon(getPlayerPed)
+    local weaponStats = GetWeaponHudStats(getPlayerWeapon)
+
+    exports.pNotify:SendNotification({text = "<b>Weapon Stats</b> <br /><br />Damage: "..hudDamage.."<br />Travel Speed: "..hudSpeed.."<br />Accuracy: "..hudAccuracy.."<br />Range: "..hudRange.."", type = "success", timeout = (5000), layout = "bottomCenter",})
+end)
